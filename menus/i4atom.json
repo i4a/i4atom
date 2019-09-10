@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle i4atom",
+        "command": "i4atom:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "i4atom",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "i4atom:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
