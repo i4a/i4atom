@@ -1,6 +1,6 @@
 {
   "name": "i4atom",
-  "main": "./lib/i4atom",
+  "main": "./lib/i4atom.js",
   "version": "0.0.0",
   "description": "A short description of your package",
   "keywords": [],
