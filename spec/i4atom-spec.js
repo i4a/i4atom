@@ -1,6 +1,6 @@
 'use babel';
 
-import I4atom from '../lib/i4atom';
+import I4atom from '../lib/i4atom.js';
 
 // Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
 //
