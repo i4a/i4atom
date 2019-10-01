@@ -1,8 +1,8 @@
 'use babel';
 
-import I4atomView from '../lib/i4atom-view';
+import ViewContainer from '../lib/i4atom/view-container';
 
-describe('I4atomView', () => {
+describe('ViewContainer', () => {
   it('has one valid test', () => {
     expect('life').toBe('easy');
   });
