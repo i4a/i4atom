@@ -2,8 +2,8 @@
   "context-menu": {
     "atom-text-editor": [
       {
-        "label": "Toggle i4atom",
-        "command": "i4atom:toggle"
+        "label": "Open i4atom",
+        "command": "i4atom:open"
       }
     ]
   },
@@ -15,8 +15,8 @@
           "label": "i4atom",
           "submenu": [
             {
-              "label": "Toggle",
-              "command": "i4atom:toggle"
+              "label": "Open",
+              "command": "i4atom:open"
             }
           ]
         }
