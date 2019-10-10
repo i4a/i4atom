@@ -15,7 +15,7 @@ describe('I4atom', () => {
     activationPromise = atom.packages.activatePackage('i4atom');
   });
 
-  describe('when the i4atom:toggle event is triggered', () => {
+  describe('when the i4atom:open event is triggered', () => {
     it('hides and shows the modal panel', () => {
       // Before the activation event the view is not on the DOM, and no panel
       // has been created
@@ -23,7 +23,7 @@ describe('I4atom', () => {
 
       // This is an activation event, triggering it will cause the package to be
       // activated.
-      atom.commands.dispatch(workspaceElement, 'i4atom:toggle');
+      atom.commands.dispatch(workspaceElement, 'i4atom:open');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -37,7 +37,7 @@ describe('I4atom', () => {
 
         let i4atomPanel = atom.workspace.panelForItem(i4atomElement);
         expect(i4atomPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'i4atom:toggle');
+        atom.commands.dispatch(workspaceElement, 'i4atom:open');
         expect(i4atomPanel.isVisible()).toBe(false);
       });
     });
@@ -55,7 +55,7 @@ describe('I4atom', () => {
 
       // This is an activation event, triggering it causes the package to be
       // activated.
-      atom.commands.dispatch(workspaceElement, 'i4atom:toggle');
+      atom.commands.dispatch(workspaceElement, 'i4atom:open');
 
       waitsForPromise(() => {
         return activationPromise;
@@ -65,7 +65,7 @@ describe('I4atom', () => {
         // Now we can test for view visibility
         let i4atomElement = workspaceElement.querySelector('.i4atom');
         expect(i4atomElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'i4atom:toggle');
+        atom.commands.dispatch(workspaceElement, 'i4atom:open');
         expect(i4atomElement).not.toBeVisible();
       });
     });

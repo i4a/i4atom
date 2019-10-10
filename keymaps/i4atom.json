@@ -1,5 +1,5 @@
 {
   "atom-workspace": {
-    "ctrl-alt-o": "i4atom:toggle"
+    "ctrl-alt-i": "i4atom:open"
   }
 }
