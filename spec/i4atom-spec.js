@@ -35,14 +35,16 @@ describe('I4atom', () => {
         let i4atomElement = workspaceElement.querySelector('.i4atom');
         expect(i4atomElement).toExist();
 
-        let i4atomPanel = atom.workspace.panelForItem(i4atomElement);
-        expect(i4atomPanel.isVisible()).toBe(true);
-        atom.commands.dispatch(workspaceElement, 'i4atom:open');
-        expect(i4atomPanel.isVisible()).toBe(false);
+        let i4atomView = atom.workspace.getPaneItems()[0];
+        expect(i4atomView.constructor.name).toBe('ViewContainer');
+
+        let i4atomPane = atom.workspace.paneForItem(i4atomView);
+        expect(i4atomPane.isActive()).toBe(true);
+        expect(i4atomPane.isFocused()).toBe(true);
       });
     });
 
-    it('hides and shows the view', () => {
+    it('shows the view', () => {
       // This test shows you an integration test testing at the view level.
 
       // Attaching the workspaceElement to the DOM is required to allow the
@@ -65,8 +67,6 @@ describe('I4atom', () => {
         // Now we can test for view visibility
         let i4atomElement = workspaceElement.querySelector('.i4atom');
         expect(i4atomElement).toBeVisible();
-        atom.commands.dispatch(workspaceElement, 'i4atom:open');
-        expect(i4atomElement).not.toBeVisible();
       });
     });
   });
