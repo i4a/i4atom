@@ -4,26 +4,9 @@ Our workflow in atom
 
 ## Installation
 
-1. Clone [this repository](https://github.com/i4a/i4atom)
-
 ```
-git clone git@github.com:i4a/i4atom.git
+apm install git@github.com:i4a/i4atom
 ```
-
-
-2. Go to your local atom packages folder
-
-```
-cd ~/.atom/packages
-```
-
-3. Link the package
-
-```
-ln -s <path/to/cloned/i4atom>
-```
-
-4. Restart atom
 
 ## Configuration
 
@@ -38,3 +21,33 @@ You must provide [i4atom](https://github.com/i4a/i4atom) with a Trello key and t
 ### Pull request detection
 
 [i4atom](https://github.com/i4a/i4atom) looks for a string in the form of `PR: <url>`
+
+## Development
+
+You can make atom use a local copy of the repository with
+
+1. Remove `i4atom` if it is already installed
+
+```
+apm rm i4atom
+```
+
+2. Clone [this repository](https://github.com/i4a/i4atom)
+
+```
+git clone git@github.com:i4a/i4atom.git
+```
+
+3. Go to your local atom packages folder
+
+```
+cd ~/.atom/packages
+```
+
+4. Link the package
+
+```
+ln -s <path/to/cloned/i4atom>
+```
+
+5. Restart atom
