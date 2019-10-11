@@ -67,6 +67,8 @@ describe('I4atom', () => {
         // Now we can test for view visibility
         let i4atomElement = workspaceElement.querySelector('.i4atom');
         expect(i4atomElement).toBeVisible();
+
+        expect(i4atomElement.textContent).toBe('Configure i4atom');
       });
     });
   });
