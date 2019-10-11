@@ -25,4 +25,16 @@ ln -s <path/to/cloned/i4atom>
 
 4. Restart atom
 
-5. Configure `i4atom`
+## Configuration
+
+You must provide [i4atom](https://github.com/i4a/i4atom) with a Trello key and token. The package will lead you to setting them from its configuration section.
+
+## Trello conventions
+
+### List names
+
+[i4atom](https://github.com/i4a/i4atom) will look for a list in each board with the name `✏️ In Progress`
+
+### Pull request detection
+
+[i4atom](https://github.com/i4a/i4atom) looks for a string in the form of `PR: <url>`
