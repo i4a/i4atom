@@ -51,3 +51,7 @@ ln -s <path/to/cloned/i4atom>
 ```
 
 5. Restart atom
+
+### JSHint
+
+Install the [JSHint](https://atom.io/packages/jshint) package for linting support
