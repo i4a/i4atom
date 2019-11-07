@@ -16,6 +16,7 @@
     "apollo-boost": "latest",
     "apollo-link-context": "latest",
     "react-apollo": "latest",
-    "graphql": "latest"
+    "graphql": "latest",
+    "restler": "3.3.0"
   }
 }
