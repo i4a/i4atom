@@ -1,0 +1,54 @@
+[
+  {
+    "id": "121",
+    "name": "Card with Pepe without PR",
+    "idMembers": ["pepe-trello-id", "other-id"],
+    "url": "https://trello.card/121",
+    "actions": [
+      {
+        "data": {
+          "text": "Some comment"
+        }
+      }
+    ]
+  },
+  {
+    "id": "122",
+    "name": "Card with Pepe with WIP PR",
+    "idMembers": ["pepe-trello-id"],
+    "url": "https://trello.card/122",
+    "actions": [
+      {
+        "data": {
+          "text": "PR: https://github.com/thefrogs/thepond/pull/122"
+        }
+      }
+    ]
+  },
+  {
+    "id": "124",
+    "name": "Card with Pepe finished PR",
+    "idMembers": ["pepe-trello-id", "another-id"],
+    "url": "https://trello.card/124",
+    "actions": [
+      {
+        "data": {
+          "text": "PR: https://github.com/thefrogs/thepond/pull/124"
+        }
+      }
+    ]
+  },
+  {
+    "id": "123",
+    "name": "Card without Pepe",
+    "idMembers": ["other-id"],
+    "url": "https://trello.card/123",
+    "actions": [
+      {
+        "data": {
+          "text": "PR: https://github.com/thefrogs/thepond/pull/123"
+        }
+      }
+    ]
+  }
+]

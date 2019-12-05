@@ -1,0 +1,33 @@
+{
+  "data": {
+    "repository": {
+      "pullRequest": {
+        "id": "github-pull-122-id",
+        "merged": false,
+        "commits": {
+          "nodes": [
+            {
+              "commit": {
+                "status": {
+                  "state": "SUCCESS",
+                  "contexts": [
+                    {
+                      "targetUrl": "https://whatever.ci/branch"
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "labels": {
+          "nodes": [
+            {
+              "name": "one-label"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
