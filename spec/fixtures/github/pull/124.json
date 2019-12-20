@@ -25,10 +25,6 @@
             {
               "id": "github-label-one-label-id",
               "name": "one-label"
-            },
-            {
-              "id": "github-label-wip-id",
-              "name": "wip"
             }
           ]
         }

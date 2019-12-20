@@ -3,8 +3,10 @@
 const fs = require('fs').promises
 import path from 'path'
 
-import { Package } from 'atom'
 const TrelloClient = require('trello')
+const Restler = require('restler')
+
+import { Package } from 'atom'
 import { ApolloClient } from 'apollo-client'
 
 function fixture(name) {
@@ -56,7 +58,7 @@ export function githubToken() {
   })
 }
 
-export function apolloClient() {
+export function githubQuery() {
   spyOn(ApolloClient.prototype, 'query').andCallFake(request => {
     body = request.query.loc.source.body
 
@@ -70,12 +72,27 @@ export function apolloClient() {
       return fixture(`github/pull/${match[1]}`)
     }
 
-    console.log('In apolloClient mock:')
+    console.log('In githubQuery mock:')
     console.log([method, path, options])
   })
 }
 
-export function trelloClient() {
+export function githubMutate() {
+  spyOn(ApolloClient.prototype, 'mutate').andCallFake(request => {
+    body = request.mutation.loc.source.body
+
+    if (body.match(/removeLabelsFromLabelable/)) {
+      return Promise.resolve({data: {removeLabelsFromLabelable: {labelable: {labels: {nodes: [] }}}}})
+    }
+
+    console.log('In githubMutate mock:')
+    console.log(body)
+  })
+
+  return ApolloClient.prototype.mutate
+}
+
+export function trello() {
   spyOn(TrelloClient.prototype, 'getBoards').andCallFake(request => {
     return fixture('trello/boards')
   })
@@ -94,20 +111,39 @@ export function trelloClient() {
           return fixture('trello/lists/12/cards')
           break
         default:
-          console.log('In trelloClient mock:')
+          console.log('In trello mock:')
           console.log([method, path, options])
       }
     } else {
-      console.log('In trelloClient mock:')
+      console.log('In trello mock:')
       console.log([method, path, options])
     }
   })
+}
+
+export function slack() {
+  spyOn(Restler, 'post').andCallFake((url, params) => {
+    return {
+      on: (result, callback) => {
+        if (result == 'complete') {
+          callback('', { statusCode: 200 })
+        }
+      }
+    }
+  })
+
+  return Restler.post
 }
 
 export default () => {
   atomConfiguration()
   atomPackageState()
   githubToken()
-  apolloClient()
-  trelloClient()
+  githubQuery()
+  trello()
+
+  return {
+    githubMutate: githubMutate(),
+    slack: slack()
+  }
 }

@@ -1,20 +1,22 @@
 'use babel';
 
 import I4atom from '../../lib/i4atom.js';
-import mock from '../support/basic-mocks'
+import basicMocks from '../support/basic-mocks'
 
 describe('I4atom', () => {
-  let workspaceElement, activationPromise
+  let mocks, workspaceElement, activationPromise
 
   beforeEach(() => {
-    mock()
-
+    mocks = basicMocks()
     workspaceElement = atom.views.getView(atom.workspace)
     activationPromise = atom.packages.activatePackage('i4atom')
   })
 
   describe('ask review button', () => {
     it('works', () => {
+      let wipCardName = 'Card with Pepe with WIP PR'
+      let slack
+
       jasmine.attachToDOM(workspaceElement)
 
       // This is an activation event, triggering it causes the package to be
@@ -37,7 +39,39 @@ describe('I4atom', () => {
       })
 
       runs(() => {
-        expect(workspaceElement.querySelector('.i4atom-ListInProgress')).toExist()
+        expect(this.listInProgressElement).toExist()
+        expect(this.listInProgressElement.innerText).toContain(wipCardName)
+
+        let wipCard =
+          Array
+          .from(this.listInProgressElement.querySelectorAll('.i4atom-Card'))
+          .find((card) => card.querySelector('.name').innerText == wipCardName)
+
+        expect(wipCard).toExist()
+
+        let wipCardButton = wipCard.querySelector('.pull-request button')
+
+        wipCardButton.click()
+      })
+
+      runs(() => {
+        expect(mocks.slack)
+        .toHaveBeenCalledWith(
+          'https://hooks.slack.com/services/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',
+          { data: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Please review <https://github.com/thefrogs/thepond/pull/122> by <@pepe-github>"}}],"channel":"#dev-only","username":"Pepe, the frog","icon_emoji":":wide_eye_pepe:","parse":"full"}' }
+        )
+      })
+
+      waitsFor(() => {
+        this.listInUnderReviewElement = workspaceElement.querySelector('.i4atom-ListUnderReview')
+        return this.listInUnderReviewElement.innerText.includes(wipCardName)
+      })
+
+      runs(() => {
+        this.listInProgressElement = workspaceElement.querySelector('.i4atom-ListInProgress')
+        expect(this.listInProgressElement.innerText).not.toContain(wipCardName)
+
+        expect(this.listInUnderReviewElement.innerText).toContain(wipCardName)
       })
     })
   })
