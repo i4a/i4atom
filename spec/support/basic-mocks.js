@@ -34,7 +34,7 @@ export function atomPackageState() {
 
   spyOn(atom.packages, 'getPackageState').andCallFake(name => {
     if (name === 'i4atom') {
-      return { view: { board: '1' }}
+      return { view: { board: { data: { id: '1', name: 'Support' }}}}
     } else {
       return originalAtomGet(key)
     }
