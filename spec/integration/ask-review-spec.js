@@ -15,7 +15,6 @@ describe('I4atom', () => {
   describe('ask review button', () => {
     it('works', () => {
       let wipCardName = 'Card with Pepe with WIP PR'
-      let slack
 
       jasmine.attachToDOM(workspaceElement)
 
