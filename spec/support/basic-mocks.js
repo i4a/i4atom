@@ -101,6 +101,10 @@ export function trello() {
     return fixture('trello/boards/1/lists')
   })
 
+  spyOn(TrelloClient.prototype, 'updateCardList').andCallFake(request => {
+    return Promise.resolve()
+  })
+
   spyOn(TrelloClient.prototype, 'makeRequest').andCallFake((method, path, options) => {
     if (method == 'get') {
       switch (path) {
@@ -119,6 +123,8 @@ export function trello() {
       console.log([method, path, options])
     }
   })
+
+  return TrelloClient.prototype
 }
 
 export function slack() {
@@ -140,10 +146,10 @@ export default () => {
   atomPackageState()
   githubToken()
   githubQuery()
-  trello()
 
   return {
     githubMutate: githubMutate(),
-    slack: slack()
+    slack: slack(),
+    trello: trello()
   }
 }

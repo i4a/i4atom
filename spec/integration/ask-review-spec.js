@@ -77,7 +77,7 @@ describe('I4atom', () => {
           .from(this.listInUnderReviewElement.querySelectorAll('.i4atom-Card'))
           .find((card) => card.querySelector('.name').innerText == wipCardName)
 
-        let underReviewCardButton = underReviewCard.querySelector('.pull-request button')
+        let underReviewCardButton = underReviewCard.querySelector('.pull-request button.i4atom-Button-askReview')
 
         underReviewCardButton.click()
 
