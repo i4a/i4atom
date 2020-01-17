@@ -1,6 +1,6 @@
 'use babel';
 
-import ViewContainer from '../lib/i4atom/view-container';
+import ViewContainer from '../lib/views/container';
 
 describe('ViewContainer', () => {
   it('has one valid test', () => {
