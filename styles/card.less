@@ -3,7 +3,7 @@
 .i4atom-Card {
   background-color: @base-background-color;
   padding: 5px 10px;
-  border-bottom: 1px solid @base-border-color; 
+  border-bottom: 1px solid @base-border-color;
 
   .name-container {
     display: flex;
@@ -13,11 +13,16 @@
     }
   }
 
-  .pull-request {
+  .content {
     display: flex;
 
-    .space {
+    .pull-request {
       flex: 1;
+      display: flex;
+
+      .space {
+        flex: 1;
+      }
     }
   }
 }

@@ -33,17 +33,17 @@ describe('I4atom', () => {
       })
 
       waitsFor(() => {
-        this.listInProgressElement = workspaceElement.querySelector('.i4atom-ListInProgress')
-        return this.listInProgressElement
+        this.listElement = workspaceElement.querySelector('.i4atom-List')
+        return this.listElement && this.listElement.innerText.includes(wipCardName)
       })
 
       runs(() => {
-        expect(this.listInProgressElement).toExist()
-        expect(this.listInProgressElement.innerText).toContain(wipCardName)
+        expect(this.listElement).toExist()
+        expect(this.listElement.innerText).toContain(wipCardName)
 
         let wipCard =
           Array
-          .from(this.listInProgressElement.querySelectorAll('.i4atom-Card'))
+          .from(this.listElement.querySelectorAll('.i4atom-Card'))
           .find((card) => card.querySelector('.name').innerText == wipCardName)
 
         expect(wipCard).toExist()
@@ -54,35 +54,6 @@ describe('I4atom', () => {
       })
 
       runs(() => {
-        expect(mocks.slack)
-        .toHaveBeenCalledWith(
-          'https://hooks.slack.com/services/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',
-          { data: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Please review <https://github.com/thefrogs/thepond/pull/122> by <@pepe-github>"}}],"channel":"#dev-only","username":"Pepe, the frog","icon_emoji":":wide_eye_pepe:","parse":"full"}' }
-        )
-      })
-
-      waitsFor(() => {
-        this.listInUnderReviewElement = workspaceElement.querySelector('.i4atom-ListUnderReview')
-        return this.listInUnderReviewElement.innerText.includes(wipCardName)
-      })
-
-      runs(() => {
-        this.listInProgressElement = workspaceElement.querySelector('.i4atom-ListInProgress')
-        expect(this.listInProgressElement.innerText).not.toContain(wipCardName)
-
-        expect(this.listInUnderReviewElement.innerText).toContain(wipCardName)
-
-        let underReviewCard =
-          Array
-          .from(this.listInUnderReviewElement.querySelectorAll('.i4atom-Card'))
-          .find((card) => card.querySelector('.name').innerText == wipCardName)
-
-        let underReviewCardButton = underReviewCard.querySelector('.pull-request button.i4atom-Button-askReview')
-
-        underReviewCardButton.click()
-
-        // TODO: this is working because it was called before
-        // We need to reset it or upgrade jasmine to check calling times
         expect(mocks.slack)
         .toHaveBeenCalledWith(
           'https://hooks.slack.com/services/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',

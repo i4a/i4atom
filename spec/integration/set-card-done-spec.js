@@ -33,28 +33,28 @@ describe('I4atom', () => {
       })
 
       waitsFor(() => {
-        this.listUnderReviewElement = workspaceElement.querySelector('.i4atom-ListUnderReview')
-        return this.listUnderReviewElement
+        this.listElement = workspaceElement.querySelector('.i4atom-List')
+        return this.listElement && this.listElement.innerText.includes(cardName)
       })
 
       runs(() => {
-        expect(this.listUnderReviewElement).toExist()
-        expect(this.listUnderReviewElement.innerText).toContain(cardName)
+        expect(this.listElement).toExist()
+        expect(this.listElement.innerText).toContain(cardName)
 
         let card =
           Array
-          .from(this.listUnderReviewElement.querySelectorAll('.i4atom-Card'))
+          .from(this.listElement.querySelectorAll('.i4atom-Card'))
           .find((card) => card.querySelector('.name').innerText == cardName)
 
         expect(card).toExist()
 
-        let cardButton = card.querySelector('.pull-request button.i4atom-Button-setDone')
+        let cardButton = card.querySelector('button.i4atom-Button-setDone')
 
         cardButton.click()
       })
 
       waitsFor(() => {
-        return !this.listUnderReviewElement.innerText.includes(cardName)
+        return !this.listElement.innerText.includes(cardName)
       })
 
       runs(() => {
