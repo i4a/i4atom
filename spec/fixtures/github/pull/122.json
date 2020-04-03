@@ -31,6 +31,16 @@
               "name": "wip"
             }
           ]
+        },
+        "files": {
+          "nodes": [
+            {
+              "path": "CHANGELOG.md"
+            },
+            {
+              "path": "README.md"
+            }
+          ]
         }
       }
     }

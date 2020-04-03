@@ -27,6 +27,16 @@
               "name": "one-label"
             }
           ]
+        },
+        "files": {
+          "nodes": [
+            {
+              "path": "CHANGELOG.md"
+            },
+            {
+              "path": "README.md"
+            }
+          ]
         }
       }
     }
