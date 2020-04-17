@@ -26,10 +26,14 @@ describe('I4atom', () => {
         return activationPromise
       });
 
-      runs(() => {
+      waitsFor(() => {
         // Now we can test for view visibility
-        let i4atomElement = workspaceElement.querySelector('.i4atom')
-        expect(i4atomElement).toBeVisible()
+        this.i4atomElement = workspaceElement.querySelector('.i4atom')
+        return this.i4atomElement
+      })
+
+      runs(() => {
+        expect(this.i4atomElement).toBeVisible()
       })
 
       waitsFor(() => {
