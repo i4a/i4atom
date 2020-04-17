@@ -53,11 +53,32 @@ describe('I4atom', () => {
         wipCardButton.click()
       })
 
+      waitsFor(() => {
+        this.editorElement = workspaceElement.querySelector('atom-text-editor.editor.mini')
+        return this.editorElement && this.editorElement.innerText.includes('Please review <https://github.com/thefrogs/thepond/pull/122> by <@pepe-github>')
+      })
+
       runs(() => {
+        atom.notifications.clear()
+
+        let addPanel
+        [addPanel] = atom.workspace.getModalPanels()
+        const addDialog = addPanel.getItem()
+        const miniEditor = addDialog.miniEditor
+
+        miniEditor.setText('Please, review this awesome pull request <https://github.com/thefrogs/thepond/pull/122>')
+        atom.commands.dispatch(addDialog.element, 'core:confirm')
+      })
+
+      waitsFor(() => atom.notifications.getNotifications().length)
+
+      runs(() => {
+        expect(atom.notifications.getNotifications()[0].getMessage()).toContain('Review request sent')
+
         expect(mocks.slack)
         .toHaveBeenCalledWith(
           'https://hooks.slack.com/services/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',
-          { data: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Please review <https://github.com/thefrogs/thepond/pull/122> by <@pepe-github>"}}],"channel":"#dev-only","username":"Pepe, the frog","icon_emoji":":wide_eye_pepe:","parse":"full"}' }
+          { data: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Please, review this awesome pull request <https://github.com/thefrogs/thepond/pull/122>"}}],"channel":"#dev-only","username":"Pepe, the frog","icon_emoji":":wide_eye_pepe:","parse":"full"}' }
         )
       })
     })
