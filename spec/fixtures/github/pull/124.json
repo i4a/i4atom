@@ -3,7 +3,7 @@
     "repository": {
       "pullRequest": {
         "id": "github-pull-124-id",
-        "merged": false,
+        "merged": true,
         "commits": {
           "nodes": [
             {

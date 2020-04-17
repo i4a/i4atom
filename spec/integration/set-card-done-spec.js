@@ -50,6 +50,8 @@ describe('I4atom', () => {
 
         let cardButton = card.querySelector('button.i4atom-Button-setDone')
 
+        expect(cardButton.classList.contains('btn-primary')).toBe(true)
+
         cardButton.click()
       })
 
