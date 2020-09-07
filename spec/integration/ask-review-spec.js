@@ -37,7 +37,7 @@ describe('I4atom', () => {
       })
 
       waitsFor(() => {
-        this.listElement = workspaceElement.querySelector('.i4atom-List')
+        this.listElement = workspaceElement.querySelector('.i4atom-Cards')
         return this.listElement && this.listElement.innerText.includes(wipCardName)
       })
 
