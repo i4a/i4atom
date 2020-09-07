@@ -40,7 +40,12 @@ export function atomPackageState() {
     }
   })
 }
-export function githubToken() {
+
+async function getCurrentBranch () {
+  return 'wip-branch'
+}
+
+export function atomGetLoadedPackage() {
   const originalGetLoadedPackage = atom.packages.getLoadedPackage.bind(atom.packages)
 
   spyOn(atom.packages, 'getLoadedPackage').andCallFake(key => {
@@ -49,6 +54,11 @@ export function githubToken() {
         mainModule: {
           loginModel: {
             getToken: (uri) => 'githubToken'
+          },
+          getActiveRepository: () => {
+            return {
+              getCurrentBranch
+            }
           }
         }
       }
@@ -144,7 +154,7 @@ export function slack() {
 export default () => {
   atomConfiguration()
   atomPackageState()
-  githubToken()
+  atomGetLoadedPackage()
   githubQuery()
 
   return {
