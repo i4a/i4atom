@@ -41,8 +41,21 @@ export function atomPackageState() {
   })
 }
 
+let gitStatus = {
+  currentBranch: 'wip-branch'
+}
+
 async function getCurrentBranch () {
-  return 'wip-branch'
+  return gitStatus.currentBranch
+}
+
+async function checkout (branch) {
+  gitStatus.branch = branch
+}
+
+const ActiveRepository = {
+  getCurrentBranch,
+  checkout
 }
 
 export function atomGetLoadedPackage() {
@@ -55,11 +68,7 @@ export function atomGetLoadedPackage() {
           loginModel: {
             getToken: (uri) => 'githubToken'
           },
-          getActiveRepository: () => {
-            return {
-              getCurrentBranch
-            }
-          }
+          getActiveRepository: () => ActiveRepository
         }
       }
     } else {
@@ -158,6 +167,7 @@ export default () => {
   githubQuery()
 
   return {
+    gitCheckout: spyOn(ActiveRepository, 'checkout'),
     githubMutate: githubMutate(),
     slack: slack(),
     trello: trello()

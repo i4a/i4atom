@@ -4,6 +4,7 @@
       "pullRequest": {
         "id": "github-pull-124-id",
         "merged": true,
+        "headRefName": "branch-for-124",
         "commits": {
           "nodes": [
             {
