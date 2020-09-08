@@ -41,11 +41,13 @@ describe('I4atom', () => {
         return this.listElement && this.listElement.innerText.includes(wipCardName)
       })
 
+      let wipCard
+
       runs(() => {
         expect(this.listElement).toExist()
         expect(this.listElement.innerText).toContain(wipCardName)
 
-        let wipCard =
+        wipCard =
           Array
           .from(this.listElement.querySelectorAll('.i4atom-Card'))
           .find((card) => card.querySelector('.name').innerText == wipCardName)
@@ -57,6 +59,10 @@ describe('I4atom', () => {
         checkoutButton.click()
 
         expect(mocks.gitCheckout).toHaveBeenCalledWith('branch-for-122')
+      })
+
+      waitsFor(() => {
+        return !wipCard.querySelector('.pull-request button.checkout')
       })
     })
   })

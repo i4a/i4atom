@@ -46,11 +46,11 @@ let gitStatus = {
 }
 
 async function getCurrentBranch () {
-  return gitStatus.currentBranch
+  return { name: gitStatus.currentBranch }
 }
 
 async function checkout (branch) {
-  gitStatus.branch = branch
+  gitStatus.currentBranch = branch
 }
 
 const ActiveRepository = {
@@ -167,7 +167,7 @@ export default () => {
   githubQuery()
 
   return {
-    gitCheckout: spyOn(ActiveRepository, 'checkout'),
+    gitCheckout: spyOn(ActiveRepository, 'checkout').andCallThrough(),
     githubMutate: githubMutate(),
     slack: slack(),
     trello: trello()
