@@ -41,21 +41,32 @@ export function atomPackageState() {
   })
 }
 
-let gitStatus = {
-  currentBranch: 'wip-branch'
+let gitMock = {
+  currentBranch: 'wip-branch',
+  updateCallbacks: [],
+  checkout (branch) {
+    this.currentBranch = branch
+
+    this.updateCallbacks.forEach((callback) => callback())
+  }
 }
 
-async function getCurrentBranch () {
-  return { name: gitStatus.currentBranch }
-}
-
-async function checkout (branch) {
-  gitStatus.currentBranch = branch
+const disposableSubscription = {
+  dispose () {}
 }
 
 const ActiveRepository = {
-  getCurrentBranch,
-  checkout
+  async getCurrentBranch () {
+    return { name: gitMock.currentBranch }
+  },
+  async checkout (branch) {
+    gitMock.currentBranch = branch
+  },
+  onDidUpdate (callback) {
+    gitMock.updateCallbacks.push(callback)
+
+    return disposableSubscription
+  }
 }
 
 export function atomGetLoadedPackage() {
@@ -167,7 +178,8 @@ export default () => {
   githubQuery()
 
   return {
-    gitCheckout: spyOn(ActiveRepository, 'checkout').andCallThrough(),
+    git: gitMock,
+    gitCheckoutSpy: spyOn(ActiveRepository, 'checkout').andCallThrough(),
     githubMutate: githubMutate(),
     slack: slack(),
     trello: trello()

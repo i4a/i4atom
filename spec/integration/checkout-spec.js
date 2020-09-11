@@ -58,11 +58,19 @@ describe('I4atom', () => {
 
         checkoutButton.click()
 
-        expect(mocks.gitCheckout).toHaveBeenCalledWith('branch-for-122')
+        expect(mocks.gitCheckoutSpy).toHaveBeenCalledWith('branch-for-122')
       })
 
       waitsFor(() => {
         return !wipCard.querySelector('.pull-request button.checkout')
+      })
+
+      runs(() => {
+        mocks.git.checkout('wip-branch')
+      })
+
+      waitsFor(() => {
+        return wipCard.querySelector('.pull-request button.checkout')
       })
     })
   })
