@@ -59,6 +59,11 @@ const ActiveRepository = {
   async getCurrentBranch () {
     return { name: gitMock.currentBranch }
   },
+  async getCurrentGitHubRemote () {
+    return {
+      url: 'git@github.com:i4a/pepe.git'
+    }
+  },
   async checkout (branch) {
     gitMock.currentBranch = branch
   },

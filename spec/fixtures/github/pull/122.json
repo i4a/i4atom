@@ -1,6 +1,7 @@
 {
   "data": {
     "repository": {
+      "sshUrl": "git@github.com:i4a/pepe.git",
       "pullRequest": {
         "id": "github-pull-122-id",
         "merged": false,
