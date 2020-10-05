@@ -1,0 +1,12 @@
+{
+  "data": {
+    "repository": {
+      "id": "pepes-repository-id",
+      "sshUrl": "git@github.com:i4a/pepe.git",
+      "defaultBranchRef": {
+        "prefix": "refs/heads",
+        "name": "main"
+      }
+    }
+  }
+}

@@ -1,18 +1,17 @@
 {
   "data": {
-    "repository": {
-      "sshUrl": "git@github.com:i4a/pepe.git",
+    "createPullRequest": {
       "pullRequest": {
-        "id": "github-pull-124-id",
-        "url": "https://github.com/thefrogs/thepond/pull/124",
-        "merged": true,
-        "headRefName": "branch-for-124",
+        "id": "github-pull-121-id",
+        "url": "https://github.com/thefrogs/thepond/pull/121",
+        "merged": false,
+        "headRefName": "wip-branch",
         "commits": {
           "nodes": [
             {
               "commit": {
                 "status": {
-                  "state": "SUCCESS",
+                  "state": "PENDING",
                   "contexts": [
                     {
                       "targetUrl": "https://whatever.ci/branch"
@@ -25,10 +24,6 @@
         },
         "labels": {
           "nodes": [
-            {
-              "id": "github-label-one-label-id",
-              "name": "one-label"
-            }
           ]
         },
         "files": {

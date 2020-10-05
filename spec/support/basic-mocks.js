@@ -55,17 +55,28 @@ const disposableSubscription = {
   dispose () {}
 }
 
+const GithubRemote = {
+  url: 'git@github.com:i4a/pepe.git',
+  getNameOr (name) { return name },
+  async getOwner () { return 'i4a' },
+  async getRepo () { return 'pepe' }
+}
+
 const ActiveRepository = {
   async getCurrentBranch () {
     return { name: gitMock.currentBranch }
   },
+  async getRemoteForBranch (_branch) {
+    return GithubRemote
+  },
   async getCurrentGitHubRemote () {
-    return {
-      url: 'git@github.com:i4a/pepe.git'
-    }
+    return GithubRemote
   },
   async checkout (branch) {
     gitMock.currentBranch = branch
+  },
+  git: {
+    async push (remote, branch) { return },
   },
   onDidUpdate (callback) {
     gitMock.updateCallbacks.push(callback)
@@ -107,8 +118,11 @@ export function githubQuery() {
       return fixture(`github/pull/${match[1]}`)
     }
 
-    console.log('In githubQuery mock:')
-    console.log([method, path, options])
+    if (body.match(/query {\s*repository\(owner: "i4a", name: "pepe"\)/)) {
+      return fixture('github/repository')
+    }
+
+    console.log(`In githubQuery mock: ${body}`)
   })
 }
 
@@ -118,6 +132,10 @@ export function githubMutate() {
 
     if (body.match(/removeLabelsFromLabelable/)) {
       return Promise.resolve({data: {removeLabelsFromLabelable: {labelable: {labels: {nodes: [] }}}}})
+    }
+
+    if (body.match(/createPullRequest/)) {
+      return Promise.resolve(fixture('github/pull/121-create'))
     }
 
     console.log('In githubMutate mock:')
@@ -185,6 +203,7 @@ export default () => {
   return {
     git: gitMock,
     gitCheckoutSpy: spyOn(ActiveRepository, 'checkout').andCallThrough(),
+    gitPushSpy: spyOn(ActiveRepository.git, 'push').andCallThrough(),
     githubMutate: githubMutate(),
     slack: slack(),
     trello: trello()
