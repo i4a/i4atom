@@ -87,6 +87,10 @@ describe('I4atom', () => {
           'PR: https://github.com/thefrogs/thepond/pull/121'
         )
       })
+
+      waitsFor(() => {
+        return card.querySelector('.pull-request button.ask-review')
+      })
     })
   })
 })
