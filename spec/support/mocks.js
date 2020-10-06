@@ -5,8 +5,6 @@ import { githubQuery, githubMutate } from './mocks/github'
 import trello from './mocks/trello'
 import slack from './mocks/slack'
 
-import { Package } from 'atom'
-
 export default () => {
   atomConfiguration()
   atomPackageState()
