@@ -3,6 +3,7 @@
     "createPullRequest": {
       "pullRequest": {
         "id": "github-pull-121-id",
+        "title": "Title of pull request for card 121",
         "url": "https://github.com/thefrogs/thepond/pull/121",
         "merged": false,
         "headRefName": "wip-branch",

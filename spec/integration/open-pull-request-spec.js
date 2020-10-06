@@ -79,7 +79,7 @@ describe('I4atom', () => {
       waitsFor(() => atom.notifications.getNotifications().length)
 
       runs(() => {
-        expect(atom.notifications.getNotifications()[0].getMessage()).toContain('https://github.com/thefrogs/thepond/pull/121 opened and added to card')
+        expect(atom.notifications.getNotifications()[0].getMessage()).toContain('<a href="https://github.com/thefrogs/thepond/pull/121">Title of pull request for card 121</a> opened and added to <a href="https://trello.card/121">card</a>')
 
         expect(mocks.trello.addCommentToCard)
         .toHaveBeenCalledWith(

@@ -4,6 +4,7 @@
       "sshUrl": "git@github.com:i4a/pepe.git",
       "pullRequest": {
         "id": "github-pull-124-id",
+        "title": "Title of pull request for card 124",
         "url": "https://github.com/thefrogs/thepond/pull/124",
         "merged": true,
         "headRefName": "branch-for-124",
