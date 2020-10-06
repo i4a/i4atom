@@ -1,6 +1,6 @@
 'use babel'
 
-export function atomConfiguration() {
+function configuration() {
   const keys = ['i4atom.trelloKey', 'i4atom.trelloToken']
   const originalAtomGet = atom.config.get.bind(atom.config)
 
@@ -13,7 +13,7 @@ export function atomConfiguration() {
   })
 }
 
-export function atomPackageState() {
+function packageState() {
   const originalAtomPackageState = atom.packages.getPackageState.bind(atom.packages)
 
   spyOn(atom.packages, 'getPackageState').andCallFake(name => {
@@ -69,7 +69,7 @@ export const ActiveRepository = {
   }
 }
 
-export function atomGetLoadedPackage() {
+function getLoadedPackage() {
   const originalGetLoadedPackage = atom.packages.getLoadedPackage.bind(atom.packages)
 
   spyOn(atom.packages, 'getLoadedPackage').andCallFake(key => {
@@ -86,4 +86,10 @@ export function atomGetLoadedPackage() {
       return originalGetLoadedPackage(key)
     }
   })
+}
+
+export default function atomMock () {
+  configuration()
+  packageState()
+  getLoadedPackage()
 }

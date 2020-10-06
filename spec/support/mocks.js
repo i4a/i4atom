@@ -1,14 +1,12 @@
 'use babel'
 
-import { atomConfiguration, atomPackageState, atomGetLoadedPackage, ActiveRepository, GitMock} from './mocks/atom'
+import atomMock, { ActiveRepository, GitMock} from './mocks/atom'
 import { githubQuery, githubMutate } from './mocks/github'
 import trello from './mocks/trello'
 import slack from './mocks/slack'
 
 export default () => {
-  atomConfiguration()
-  atomPackageState()
-  atomGetLoadedPackage()
+  atomMock()
   githubQuery()
 
   return {
