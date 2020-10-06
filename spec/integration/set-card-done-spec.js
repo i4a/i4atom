@@ -1,13 +1,13 @@
 'use babel'
 
 import I4atom from '../../lib/i4atom.js'
-import basicMocks from '../support/basic-mocks'
+import Mocks from '../support/mocks'
 
 describe('I4atom', () => {
   let mocks, workspaceElement, activationPromise
 
   beforeEach(() => {
-    mocks = basicMocks()
+    mocks = Mocks()
     workspaceElement = atom.views.getView(atom.workspace)
     activationPromise = atom.packages.activatePackage('i4atom')
   })
