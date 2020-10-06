@@ -1,63 +1,14 @@
 'use babel'
 
 import { atomConfiguration, atomPackageState, atomGetLoadedPackage, ActiveRepository, GitMock} from './mocks/atom'
+import { githubQuery, githubMutate } from './mocks/github'
 
-const fs = require('fs').promises
-import path from 'path'
+import fixture from './fixture'
 
 const TrelloClient = require('trello')
 const Restler = require('restler')
 
 import { Package } from 'atom'
-import { ApolloClient } from 'apollo-client'
-
-function fixture(name) {
-  const nameWithPath =
-    path.join(path.dirname(__filename), '..', 'fixtures', `${name}.json`)
-
-  return fs.readFile(nameWithPath).then((data) => JSON.parse(data))
-}
-
-export function githubQuery() {
-  spyOn(ApolloClient.prototype, 'query').andCallFake(request => {
-    body = request.query.loc.source.body
-
-    if (body == 'query { viewer { login } }') {
-      return fixture('github/viewer')
-    }
-
-    match = body.match(/pullRequest\(number: (\d+)\)/)
-
-    if (match) {
-      return fixture(`github/pull/${match[1]}`)
-    }
-
-    if (body.match(/query {\s*repository\(owner: "i4a", name: "pepe"\)/)) {
-      return fixture('github/repository')
-    }
-
-    console.log(`In githubQuery mock: ${body}`)
-  })
-}
-
-export function githubMutate() {
-  spyOn(ApolloClient.prototype, 'mutate').andCallFake(request => {
-    body = request.mutation.loc.source.body
-
-    if (body.match(/removeLabelsFromLabelable/)) {
-      return Promise.resolve({data: {removeLabelsFromLabelable: {labelable: {labels: {nodes: [] }}}}})
-    }
-
-    if (body.match(/createPullRequest/)) {
-      return Promise.resolve(fixture('github/pull/121-create'))
-    }
-
-    console.log('In githubMutate mock:')
-    console.log(body)
-  })
-
-  return ApolloClient.prototype.mutate
-}
 
 export function trello() {
   spyOn(TrelloClient.prototype, 'getBoards').andCallFake(request => {
