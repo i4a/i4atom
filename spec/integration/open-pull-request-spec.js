@@ -15,6 +15,7 @@ describe('I4atom', () => {
   describe('open pull request', () => {
     it('works', () => {
       const cardName = 'Card with Pepe without PR'
+      const pullRequestTitle = `Pull request for ${cardName}`
 
       jasmine.attachToDOM(workspaceElement)
 
@@ -71,10 +72,21 @@ describe('I4atom', () => {
         const addDialog = addPanel.getItem()
         const miniEditor = addDialog.miniEditor
 
-        miniEditor.setText('Please, review this awesome pull request <https://github.com/thefrogs/thepond/pull/122>')
+        miniEditor.setText(pullRequestTitle)
         atom.commands.dispatch(addDialog.element, 'core:confirm')
       })
 
+      waitsFor(() => atom.notifications.getNotifications().length)
+
+      runs(() => {
+        expect(atom.notifications.getNotifications()[0].getMessage()).toContain('https://github.com/thefrogs/thepond/pull/121 opened and added to card')
+
+        expect(mocks.trello.addCommentToCard)
+        .toHaveBeenCalledWith(
+          '121',
+          'PR: https://github.com/thefrogs/thepond/pull/121'
+        )
+      })
     })
   })
 })

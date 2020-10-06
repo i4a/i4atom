@@ -158,6 +158,10 @@ export function trello() {
     return Promise.resolve()
   })
 
+  spyOn(TrelloClient.prototype, 'addCommentToCard').andCallFake(request => {
+    return Promise.resolve(fixture('trello/comments/create-pr'))
+  })
+
   spyOn(TrelloClient.prototype, 'makeRequest').andCallFake((method, path, options) => {
     if (method == 'get') {
       switch (path) {
