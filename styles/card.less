@@ -19,23 +19,23 @@
   .content {
     display: flex;
 
-    .content-pull-requests {
+    .space {
       flex: 1;
     }
+  }
 
-    .empty-pull-request {
+  .content-pull-requests {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pull-request {
+    flex: 1;
+    display: flex;
+
+    .space {
       flex: 1;
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .pull-request {
-      flex: 1;
-      display: flex;
-
-      .space {
-        flex: 1;
-      }
     }
   }
 
