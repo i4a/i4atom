@@ -59,7 +59,7 @@ describe('I4atom', () => {
 
       waitsFor(() => {
         this.editorElement = workspaceElement.querySelector('atom-text-editor.editor.mini')
-        return this.editorElement && this.editorElement.innerText.includes(cardName)
+        return this.editorElement && this.editorElement.innerText.includes('wip branch')
       })
 
       runs(() => {
