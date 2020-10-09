@@ -11,8 +11,8 @@
     .name {
       flex: 1;
       color: inherit;
-      font-size: 1.1em;
-      padding-bottom: 2px;
+      font-size: 1.2em;
+      padding-bottom: 10px;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -37,6 +37,7 @@
   .pull-request {
     flex: 1;
     display: flex;
+    padding-bottom: 5px;
 
     .title {
       flex: 1;
@@ -45,6 +46,10 @@
       text-overflow: ellipsis;
       min-width: 0;
     }
+  }
+
+  .pull-request:last-child {
+    padding-bottom: 10px;
   }
 
   .text-merged {
