@@ -55,4 +55,14 @@
   .text-merged {
     color: #6f42c1;
   }
+
+  .animate-up::before {
+    @keyframes github-StatusBarAnimation-up {
+      0% { transform: translateY(30%); }
+      100% { transform: translateY(-30%); }
+    }
+    animation:
+      github-StatusBarAnimation-up 800ms ease-out infinite,
+      github-StatusBarAnimation-fade 800ms ease-out infinite;
+  }
 }
