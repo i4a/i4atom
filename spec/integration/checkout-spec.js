@@ -66,6 +66,9 @@ describe('I4atom', () => {
       })
 
       runs(() => {
+        checkedOutMessage = wipCard.querySelector('span.checked-out')
+        expect(checkedOutMessage).toExist()
+        
         mocks.git.checkout('wip-branch')
       })
 
