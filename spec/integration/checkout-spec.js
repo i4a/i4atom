@@ -12,7 +12,7 @@ describe('I4atom', () => {
     activationPromise = atom.packages.activatePackage('i4atom')
   })
 
-  describe('ask review button', () => {
+  describe('checkout button', () => {
     it('works', () => {
       let wipCardName = 'Card with Pepe with WIP PR'
 
