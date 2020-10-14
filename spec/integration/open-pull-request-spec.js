@@ -91,6 +91,11 @@ describe('I4atom', () => {
       waitsFor(() => {
         return card.querySelector('.pull-request button.ask-review')
       })
+
+      runs(() => {
+        checkedOutMessage = card.querySelector('span.checked-out')
+        expect(checkedOutMessage).toExist()
+      })
     })
   })
 })
