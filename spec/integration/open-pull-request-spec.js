@@ -89,7 +89,7 @@ describe('I4atom', () => {
       })
 
       waitsFor(() => {
-        return card.querySelector('.pull-request button.ask-review')
+        return card.querySelector('.i4atom-PullRequest button.ask-review')
       })
 
       runs(() => {

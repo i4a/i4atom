@@ -52,7 +52,7 @@ describe('I4atom', () => {
 
         expect(wipCard).toExist()
 
-        let wipCardButton = wipCard.querySelector('.pull-request button.ask-review')
+        let wipCardButton = wipCard.querySelector('.i4atom-PullRequest button.ask-review')
 
         wipCardButton.click()
       })

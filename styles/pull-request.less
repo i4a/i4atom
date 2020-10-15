@@ -1,0 +1,32 @@
+.i4atom-PullRequest {
+  flex: 1;
+  display: flex;
+  padding-bottom: 5px;
+
+  .title {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .checked-out {
+    padding: 0 0.8em;
+  }
+
+  .text-merged {
+    color: #6f42c1;
+  }
+}
+
+.i4atom-PullRequest:last-child {
+  padding-bottom: 10px;
+}
+
+.i4atom-PullRequest.pull-request-merged {
+  opacity: 0.6;
+  .checkout, .checked-out, .ask-review {
+    display: none;
+  }
+}

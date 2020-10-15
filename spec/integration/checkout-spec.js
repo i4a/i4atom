@@ -54,7 +54,7 @@ describe('I4atom', () => {
 
         expect(wipCard).toExist()
 
-        let checkoutButton = wipCard.querySelector('.pull-request button.checkout')
+        let checkoutButton = wipCard.querySelector('.i4atom-PullRequest button.checkout')
 
         checkoutButton.click()
 
@@ -62,18 +62,18 @@ describe('I4atom', () => {
       })
 
       waitsFor(() => {
-        return !wipCard.querySelector('.pull-request button.checkout')
+        return !wipCard.querySelector('.i4atom-PullRequest button.checkout')
       })
 
       runs(() => {
         checkedOutMessage = wipCard.querySelector('span.checked-out')
         expect(checkedOutMessage).toExist()
-        
+
         mocks.git.checkout('wip-branch')
       })
 
       waitsFor(() => {
-        return wipCard.querySelector('.pull-request button.checkout')
+        return wipCard.querySelector('.i4atom-PullRequest button.checkout')
       })
     })
   })
