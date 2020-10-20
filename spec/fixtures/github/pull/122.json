@@ -6,6 +6,7 @@
         "id": "github-pull-122-id",
         "title": "Title of pull request for card 122",
         "url": "https://github.com/thefrogs/thepond/pull/122",
+        "closed": false,
         "merged": false,
         "number": 122,
         "headRefName": "branch-for-122",
