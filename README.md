@@ -1,6 +1,6 @@
 # i4atom package
 
-Our workflow in atom
+Our wokflow in atom
 
 ## Installation
 
@@ -55,3 +55,6 @@ ln -s <path/to/cloned/i4atom>
 ### JSHint
 
 Install the [JSHint](https://atom.io/packages/jshint) package for linting support
+
+
+Copyright © 2020 Global ideas4all SL
