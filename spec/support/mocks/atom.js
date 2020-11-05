@@ -1,11 +1,15 @@
 'use babel'
 
+export const SlackWebhookUri = 'https://slack/webook-uri'
+
 function configuration() {
   const keys = ['i4atom.trelloKey', 'i4atom.trelloToken']
   const originalAtomGet = atom.config.get.bind(atom.config)
 
   spyOn(atom.config, 'get').andCallFake(key => {
-    if (keys.includes(key)) {
+    if (key == 'i4atom.slackWebhook') {
+      return SlackWebhookUri
+    } else if (keys.includes(key)) {
       return 'configurationValue'
     } else {
       return originalAtomGet(key)

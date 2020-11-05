@@ -81,7 +81,7 @@ describe('I4atom', () => {
 
         expect(mocks.slack)
         .toHaveBeenCalledWith(
-          'https://hooks.slack.com/services/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',
+          mocks.SlackWebhookUri,
           { data: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"Please, review this awesome pull request <https://github.com/thefrogs/thepond/pull/122>"}}],"channel":"#dev-only","username":"Pepe, the frog","icon_emoji":":wide_eye_pepe:","parse":"full"}' }
         )
       })
