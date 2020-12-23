@@ -12,10 +12,10 @@ communicate over Slack
 
 * It shows all your work in progress cards, along all your boards
 * It creates pull requests in one click: pushes current branch, creates the pull
-  request in Github with a link to the Trello card, and adds a comment in the
+  request in Github including a link to the Trello card, and adds a comment in the
   Trello card with a link to the pull request. Documentation tasks made easy!
 * It shows a list of all the pull requests in every card with the following information:
-  - Pull request revision status and link to the pull request
+  - Pull request revision status with link to the pull request
   - Continuous integration status with a link to the continuous integration url
   - Changelog entry status with a link to the `CHANGELOG.md` file
   - Button for checking out the pull request branch (easy change between cards)
@@ -44,9 +44,9 @@ The package will lead you to setting them from its configuration section.
 [i4atom](https://github.com/i4a/i4atom) will look for a list in each board with the name `✏️ In Progress`. The `Done` button moves cards to a list with the name `🐛 Testing`
 
 
-### Pull request detection
+### Pull request and time detection
 
-[i4atom](https://github.com/i4a/i4atom) looks for a string in the form of `PR: <url>` in the comments of each Trello card.
+[i4atom](https://github.com/i4a/i4atom) looks for strings in the form of `PR: <url>` or `Time: <time>` in the comments of each Trello card.
 
 ## Development
 
