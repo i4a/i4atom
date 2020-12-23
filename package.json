@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Support developer workflow and integration among Trello, Github and Slack",
   "keywords": ["productivity", "trello", "github", "slack", "scrum", "kanban"],
-  "repository": "https://github.com/atom/i4atom",
+  "repository": "https://github.com/i4a/i4atom",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
